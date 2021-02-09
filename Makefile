@@ -1,7 +1,7 @@
 CC = gcc
 LD = gcc
 CFLAGS = -I. -O0
-OBJS = header.o tablehotfix.o
+OBJS = header.o tablehotfix.o regularhotfix.o
 LIBRARIES = libbl3mod.a
 MANUALS_PS = manual.ps
 MANUALS_PDF = manual.pdf

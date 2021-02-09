@@ -2,7 +2,7 @@ SYSTEM = nt
 CC = wcc386
 LD = wlib
 CFLAGS = -bt=$(SYSTEM) -bc
-OBJS = header.obj tablehotfix.obj
+OBJS = header.obj tablehotfix.obj regularhotfix.obj
 LIBRARIES = libbl3mod.lib
 
 all: $(LIBRARIES)
@@ -18,7 +18,7 @@ all: $(LIBRARIES)
 
 $(LIBRARIES): $(CPROTOS) $(OBJS)
 	@echo " AR    libbl3mod"
-	@wlib libbl3mod.lib +header.obj +tablehotfix.obj
+	@wlib libbl3mod.lib +header.obj +tablehotfix.obj +regularhotfix.obj
 
 .PHONY: clean
 
