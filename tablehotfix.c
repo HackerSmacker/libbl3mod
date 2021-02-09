@@ -9,6 +9,11 @@ char* table_hotfix(const char* hf_type, char* package, char* obj_name,
 	char* output;
 	char* notFlagChars;
 	char* prevValLenChars;
+	char* packageEndWithSlash;
+	char* packageEnd;
+	packageEndWithSlash = strrchr(package, '/');
+	packageEnd = malloc(strlen(packageEndWithSlash) - 1);
+	strcpy(packageEnd, packageEndWithSlash + 1);
 	output = malloc(strlen(hf_type) + strlen(package) + strlen(obj_name)
 			+ strlen(row_name) + strlen(attr_name)
 			+ strlen(new_val) + 32);
@@ -20,6 +25,8 @@ char* table_hotfix(const char* hf_type, char* package, char* obj_name,
 	strcat(output, notFlagChars);
 	strcat(output, ",),");
 	strcat(output, package);
+	strcat(output, ".");
+	strcat(output, packageEnd);
 	strcat(output, ",");
 	strcat(output, obj_name);
 	strcat(output, ",");

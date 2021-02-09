@@ -1,0 +1,26 @@
+SYSTEM = nt
+CC = wcc386
+LD = wlib
+CFLAGS = -bt=$(SYSTEM) -bc
+OBJS = header.obj tablehotfix.obj
+LIBRARIES = libbl3mod.lib
+
+all: $(LIBRARIES)
+
+%.txt: %.ms
+	@echo " TROFF   " $< " TEXT"
+	# @groff -Tascii -ms -Z $< | grotty -c | sed 's/[\x01-\x1F\x7F]//g' | sed 's/\([A-Za-z.,()]\)\1\+/\1/g' > $@
+	@groff -Tascii -ms -Z $< | grotty -c | sed 's/[\x01-\x1F\x7F]//g' > $@
+
+%.obj: %.c
+	@echo " CC   " $<
+	@$(CC) $(CFLAGS) $<
+
+$(LIBRARIES): $(CPROTOS) $(OBJS)
+	@echo " AR    libbl3mod"
+	@wlib libbl3mod.lib +header.obj +tablehotfix.obj
+
+.PHONY: clean
+
+clean:
+	rm -f *.obj *.lib
