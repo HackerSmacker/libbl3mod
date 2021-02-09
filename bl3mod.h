@@ -11,4 +11,6 @@ char* regular_hotfix(const char* hf_type, char* pakFile, char* package,
 char* mesh_hotfix(const char* hf_type, char* pakFile, char* package,
                 char* attr_name, char* object, char* to_val, int visible,
                 int notificationFlag);
+char* mesh_coord(char* x, char* y, char* z, char* rx,
+                char* ry, char* rz, char* sx, char* sy, char* sz);
 #endif

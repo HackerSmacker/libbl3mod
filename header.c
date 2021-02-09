@@ -12,8 +12,11 @@
 
 char* mod_header(char* name, char* author, char* comment, char* version) {
 	char* output;
-	output = malloc(strlen(name) + strlen(comment) +
+	int len;
+	len = (strlen(name) + strlen(comment) +
 		strlen(author) + strlen(version) + 50);
+	output = malloc(len);
+	memset(output, 0x00, len);
 	strcat(output, "###\n");
 	strcat(output, "### Name: ");
 	strcat(output, name);
@@ -23,7 +26,6 @@ char* mod_header(char* name, char* author, char* comment, char* version) {
 	strcat(output, author);
 	strcat(output, "\n### Comment: ");
 	strcat(output, comment);
-	strcat(output, "\n");
 	return output;
 }
 

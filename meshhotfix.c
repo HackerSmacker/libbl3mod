@@ -50,3 +50,32 @@ char* mesh_hotfix(const char* hf_type, char* pakFile, char* package,
 	strcat(output, "\n");
 	return output;
 }
+
+char* mesh_coord(char* x, char* y, char* z, char* rx,
+		char* ry, char* rz, char* sx, char* sy, char* sz) {
+	char* output;
+	int len;
+	len = (strlen(x) + strlen(y) + strlen(z) + strlen(rx)
+			+ strlen(ry) + strlen(rz) + strlen(sx)
+			+ strlen(sy) + strlen(sz) + 8);
+	output = malloc(len);
+	memset(output, 0x00, len);
+	strcat(output, x);
+	strcat(output, ",");
+	strcat(output, y);
+	strcat(output, ",");
+	strcat(output, z);
+	strcat(output, "|");
+	strcat(output, rx);
+	strcat(output, ",");
+	strcat(output, ry);
+	strcat(output, ",");
+	strcat(output, rz);
+	strcat(output, "|");
+	strcat(output, sx);
+	strcat(output, ",");
+	strcat(output, sy);
+	strcat(output, ",");
+	strcat(output, sz);
+	return output;
+}
