@@ -1,0 +1,23 @@
+CC = cl
+LD = link
+CFLAGS = /c
+OBJS = header.obj tablehotfix.obj regularhotfix.obj
+LIBRARIES = libbl3mod.lib
+PREFIX = /usr/local
+
+all: $(LIBRARIES)
+
+.SUFFIXES: .c .h .o
+
+.c.o:
+	@echo " CC  " $<
+	@$(CC) $(CFLAGS) $<
+
+$(LIBRARIES): $(CPROTOS) $(OBJS)
+	@echo " AR   libbl3mod"
+	@lib /out:libbl3mod.lib $(OBJS)
+
+.PHONY: clean
+
+clean:
+	rm -f *.obj *.lib
