@@ -2,7 +2,7 @@ SYSTEM = nt
 CC = wcc386
 LD = wlib
 CFLAGS = -bt=$(SYSTEM) -bc
-OBJS = header.obj tablehotfix.obj regularhotfix.obj
+OBJS = header.obj tablehotfix.obj regularhotfix.obj meshhotfix.obj
 LIBRARIES = libbl3mod.lib
 
 all: $(LIBRARIES)

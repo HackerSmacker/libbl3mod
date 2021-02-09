@@ -1,7 +1,7 @@
 CC = cl
 LD = link
 CFLAGS = /c
-OBJS = header.obj tablehotfix.obj regularhotfix.obj
+OBJS = header.obj tablehotfix.obj regularhotfix.obj meshhotfix.obj
 LIBRARIES = libbl3mod.lib
 PREFIX = /usr/local
 

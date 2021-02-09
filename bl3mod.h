@@ -8,5 +8,7 @@ char* table_hotfix(const char* hf_type, char* package,
 char* regular_hotfix(const char* hf_type, char* pakFile, char* package,
                 char* attr_name, char* from_val, char* to_val,
                 int notificationFlag);
-
+char* mesh_hotfix(const char* hf_type, char* pakFile, char* package,
+                char* attr_name, char* object, char* to_val, int visible,
+                int notificationFlag);
 #endif
