@@ -1,0 +1,42 @@
+libbl3mod
+
+C library for Borderlands 3 hotfix mods
+By HackerSmacker, licensed under the terms of the GPLv3 license
+
+Installation on UNIX/Linux/WSL/Cygwin/MacOS/BSD:
+After downloading the source, simply run make and make install to
+install libbl3mod. The headers will be copied to /usr/local/include/libbl3mod
+so you will have to put #include <libbl3mod/bl3mod.h> in your source. The
+library will be at /usr/local/lib/libbl3mod.a, so passing -lbl3mod to the
+linker or C compiler will link the executable.
+
+Installation on Windows (Visual Studio):
+First, run a command shell that has cl, nmake, link, and lib in your path.
+This can be done easily by running the "developer command prompt" for your
+version. There is an nmake-compatible Makefile, so running nmake will compile
+everything. Then, set INCLUDE and LIB to point to the directories where you
+copied the headers and libbl3mod.lib. You need to invoke nmake like this:
+nmake -f Makefile.vsc
+
+And now, for the systems nobody in the world is gonna use:
+
+Installation on DOS, OS/2, and Windows (Watcom C/C++):
+After putting wmake, wcc386, wlink, and wlib into your shell path and setting
+INCLUDE and WATCOM, go ahead and run wmake -f Makefile.watcom to compile
+everything. Installation follows the same procedure as Visual Studio - simply
+copy the libraries and headers to somewhere and append them to your include
+and library paths. 
+
+Installation on VMS:
+The package comes with a MAKE_VMS.COM script, simply run it like so: 
+@MAKE_VMS and it will compile. From there, you can use LINK and link your
+program against the OLB.
+
+Installation on VM/CMS:
+TODO: write instructions for VM/370 compile
+
+Installation on RSX-11:
+Like the VMS version, there's a MAKE_RSX.COM to do the dirty work for you. 
+Simply follow the same procedure to compile it as you would on VMS, and be
+sure to link it against the same OLB library. Using the Task Builder works 
+as well, but really the LINK command is way better.
