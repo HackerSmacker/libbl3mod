@@ -8,7 +8,9 @@ After downloading the source, simply run make and make install to
 install libbl3mod. The headers will be copied to /usr/local/include/libbl3mod
 so you will have to put #include <libbl3mod/bl3mod.h> in your source. The
 library will be at /usr/local/lib/libbl3mod.a, so passing -lbl3mod to the
-linker or C compiler will link the executable.
+linker or C compiler will link the executable. Note: Users of non-GNU based
+systems (so BSD, MacOS, or any System V UNIX) will need to run
+"make -f Makefile.bsd" in order to compile everything correctly.
 
 Installation on Windows (Visual Studio):
 First, run a command shell that has cl, nmake, link, and lib in your path.
@@ -30,12 +32,13 @@ and library paths.
 Installation on VMS:
 The package comes with a MAKE_VMS.COM script, simply run it like so: 
 @MAKE_VMS and it will compile. From there, you can use LINK and link your
-program against the OLB.
+program against the OLB. MMS or DECset is not required.
 
 Installation on VM/CMS:
 TODO: write instructions for VM/370 compile
 
 Installation on RSX-11:
+(NOTE 3/8/21: not supported)
 Like the VMS version, there's a MAKE_RSX.COM to do the dirty work for you. 
 Simply follow the same procedure to compile it as you would on VMS, and be
 sure to link it against the same OLB library. Using the Task Builder works 

@@ -14,6 +14,17 @@
 
 FILE* outFile;
 
+/* Does this code already exist somewhere else? Probably! */
+
+char* getVal() {
+	char* value;
+	value = malloc(1024);
+	memset(value, 0x00, 1024);
+	fgets(value, 1024, stdin);
+	strtok(value, "\n");
+	return value;
+}
+
 int main(int argc, char** argv) {
 	char* outputFile;
 	char* input;
@@ -37,14 +48,14 @@ int main(int argc, char** argv) {
 	char* level_sy;
 	char* level_sz;
 	char* output;
+	char* from_val;
+	char* to_val;
+	char* attribute;
 	int loopContinue = 1;
 	printf("BL3 Hotfix Mod \"GUI\"\n");
 	printf("(c) 2021 HackerSmacker\n");
 	printf("Output file? ");
-	outputFile = malloc(1024);
-	memset(outputFile, 0x00, 1024);
-	fgets(outputFile, 1024, stdin);
-	strtok(outputFile, "\n");
+	outputFile = getVal();
 	printf("Will use %s.\n", outputFile);
 	outFile = fopen(outputFile, "w");
 	if(!outFile) {
@@ -53,28 +64,17 @@ int main(int argc, char** argv) {
 	}
 	printf("Please answer the following questions for the mod header.\n");
 	printf("Name of your mod: ");
-	header_name = malloc(1024);
-	memset(header_name, 0x00, 1024);
-	fgets(header_name, 1024, stdin);
-	strtok(header_name, "\n");
+	header_name = getVal();
 	printf("Your name: ");
-	header_author = malloc(1024);
-	memset(header_author, 0x00, 1024);
-	fgets(header_author, 1024, stdin);
-	strtok(header_author, "\n");
+	header_author = getVal();
 	printf("A description for your mod: ");
-	header_comments = malloc(1024);
-	memset(header_comments, 0x00, 1024);
-	fgets(header_comments, 1024, stdin);
-	strtok(header_comments, "\n");
+	header_comments = getVal();
 	printf("Mod version: ");
-	header_version = malloc(1024);
-	memset(header_version, 0x00, 1024);
-	fgets(header_version, 1024, stdin);
-	strtok(header_version, "\n");
+	header_version = getVal();
 	header = mod_header(header_name, header_author,
 			header_comments, header_version);
 	fwrite(header, sizeof(char), strlen(header), outFile);
+	fwrite("\n", sizeof(char), 1, outFile);
 	printf("To exit, enter X\n");
 	while(loopContinue == 1) {
 		printf("Mod Choices\n");
@@ -82,85 +82,64 @@ int main(int argc, char** argv) {
 		printf("2 - Table hotfix\n");
 		printf("3 - Level geometry hotfix\n");
 		printf("X - Exit\n");
-		choice = malloc(32);
-		memset(choice, 0x00, 32);
-		fgets(choice, 32, stdin);
-		strtok(choice, "\n");
-		if(strcmp(choice, "3") == 0) {
+		choice = getVal();
+		if(strcmp(choice, "1") == 0) {
+			printf("Regular hotfix.\n");
+			printf("What package are you modifying? ");
+			level_package = getVal();
+			printf("What object are you modifying? ");
+			level_object = getVal();
+			printf("What attribute name are you modifying? ");
+			attribute = getVal();
+			printf("What is the \"from\" value? ");
+			from_val = getVal();
+			printf("What is the \"to\" value? ");
+			to_val = getVal();
+			output = regular_hotfix("SparkPatchEntry", level_package,
+				level_object, attribute, from_val, to_val, 0);
+			fwrite(output, sizeof(char), strlen(output), outFile);
+		}
+		else if(strcmp(choice, "3") == 0) {
 			printf("Level geometry hotfix.\n");
 			printf("What package is the map in? ");
-			level_package = malloc(1024);
-			memset(level_package, 0x00, 1024);
-			fgets(level_package, 1024, stdin);
-			strtok(level_package, "\n");
+			level_package = getVal();
 			printf("What is the path to the level? ");
-			level_object = malloc(1024);
-                        memset(level_object, 0x00, 1024);
-                        fgets(level_object, 1024, stdin);
-                        strtok(level_object, "\n");
+			level_object = getVal();
 			printf("What object in the level are you modifying? ");
-			level_part = malloc(1024);
-                        memset(level_part, 0x00, 1024);
-                        fgets(level_part, 1024, stdin);
-                        strtok(level_part, "\n");
+			level_part = getVal();
 			printf("New X coordinate: ");
-			level_x = malloc(1024);
-                        memset(level_x, 0x00, 1024);
-                        fgets(level_x, 1024, stdin);
-                        strtok(level_x, "\n");
+			level_x = getVal();
 			printf("New Y coordinate: ");
-                        level_y = malloc(1024);
-                        memset(level_y, 0x00, 1024);
-                        fgets(level_y, 1024, stdin);
-                        strtok(level_y, "\n");
+			level_y = getVal();
 			printf("New Z coordinate: ");
-                        level_z = malloc(1024);
-                        memset(level_z, 0x00, 1024);
-                        fgets(level_z, 1024, stdin);
-                        strtok(level_z, "\n");
+			level_z = getVal();
 			printf("New X rotation: ");
-                        level_rx = malloc(1024);
-                        memset(level_rx, 0x00, 1024);
-                        fgets(level_rx, 1024, stdin);
-                        strtok(level_rx, "\n");
+			level_rx = getVal();
 			printf("New Y rotation: ");
-                        level_ry = malloc(1024);
-                        memset(level_ry, 0x00, 1024);
-                        fgets(level_ry, 1024, stdin);
-                        strtok(level_ry, "\n");
+			level_ry = getVal();
 			printf("New Z rotation: ");
-                        level_rz = malloc(1024);
-                        memset(level_rz, 0x00, 1024);
-                        fgets(level_rz, 1024, stdin);
-                        strtok(level_rz, "\n");
+			level_rz = getVal();
 			printf("New X scale: ");
-                        level_sx = malloc(1024);
-                        memset(level_sx, 0x00, 1024);
-                        fgets(level_sx, 1024, stdin);
-                        strtok(level_sx, "\n");
+			level_sx = getVal();
 			printf("New Y scale: ");
-                        level_sy = malloc(1024);
-                        memset(level_sy, 0x00, 1024);
-                        fgets(level_sy, 1024, stdin);
-                        strtok(level_sy, "\n");
+			level_sy = getVal();
 			printf("New Z scale: ");
-                        level_sz = malloc(1024);
-                        memset(level_sz, 0x00, 1024);
-                        fgets(level_sz, 1024, stdin);
-                        strtok(level_sz, "\n");
+			level_sz = getVal();
 			level_toval = mesh_coord(level_x, level_y, level_z,
 					level_rx, level_ry, level_rz,
 					level_sx, level_sy, level_sz);
+			/*
 			output = mesh_hotfix(mod_type_earlylevel,
 					level_package,
 					level_object,
 					level_part,
 					level_toval,
 					0,
-					0);
+			       		0);
+			*/
 			fwrite(output, sizeof(char), strlen(output), outFile);
 		}
-		else if(strcmp(choice, "X")) {
+		else if(strcmp(choice, "X") == 0) {
 			loopContinue = 0;
 		}
 		else {

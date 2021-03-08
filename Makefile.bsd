@@ -3,26 +3,24 @@ LD = gcc
 CFLAGS = -I. -O0
 OBJS = header.o tablehotfix.o regularhotfix.o meshhotfix.o
 LIBRARIES = libbl3mod.a
-MANUALS_PS = manual.ps
-MANUALS_PDF = manual.pdf
-MANUALS_TEXT = manual.txt
+PROGS_OBJS = dialog.o
+PROGS = dialog
 PREFIX = /usr/local
 
-all: $(LIBRARIES)
+all: $(LIBRARIES) $(PROGS)
 
 .SUFFIXES: .c .h .o
 
 .c.o:
-	@echo " CC  " $<
-	@$(CC) $(CFLAGS) -c -o $@ $<
+	$(CC) $(CFLAGS) -c -o $@ $<
 
 $(LIBRARIES): $(CPROTOS) $(OBJS)
-	@echo " AR   libbl3mod"
-	@ar cr libbl3mod.a $(OBJS)
+	ar cr libbl3mod.a $(OBJS)
 
-manual: $(MANUALS_PS) $(MANUALS_PDF) $(MANUALS_TEXT)
+$(PROGS): $(PROGS_OBJS) $(LIBRARIES)
+	$(CC) -o dialog dialog.o -L. -lbl3mod
 
 .PHONY: clean
 
 clean:
-	rm -f *.o *.a $(MANUALS_PS) $(MANUALS_PDF) $(MANUALS_TEXT)
+	rm -f $(OBJS) $(PROGS_OBJS) $(LIBRARIES) $(PROGS)

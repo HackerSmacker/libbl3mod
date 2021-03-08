@@ -1,26 +1,22 @@
-SYSTEM = nt
+SYSTEM = os2v2
 CC = wcc386
 LD = wlib
 CFLAGS = -bt=$(SYSTEM) -bc
 OBJS = header.obj tablehotfix.obj regularhotfix.obj meshhotfix.obj
+PROGS_OBJS = dialog.obj
+PROGS = dialog.exe
 LIBRARIES = libbl3mod.lib
 
-all: $(LIBRARIES)
+all: $(LIBRARIES) $(PROGS)
 
-%.txt: %.ms
-	@echo " TROFF   " $< " TEXT"
-	# @groff -Tascii -ms -Z $< | grotty -c | sed 's/[\x01-\x1F\x7F]//g' | sed 's/\([A-Za-z.,()]\)\1\+/\1/g' > $@
-	@groff -Tascii -ms -Z $< | grotty -c | sed 's/[\x01-\x1F\x7F]//g' > $@
+.c.obj:
+	$(CC) $(CFLAGS) $<
 
-%.obj: %.c
-	@echo " CC   " $<
-	@$(CC) $(CFLAGS) $<
+$(LIBRARIES): $(OBJS)
+	wlib libbl3mod.lib +header.obj +tablehotfix.obj +regularhotfix.obj +meshhotfix.obj
 
-$(LIBRARIES): $(CPROTOS) $(OBJS)
-	@echo " AR    libbl3mod"
-	@wlib libbl3mod.lib +header.obj +tablehotfix.obj +regularhotfix.obj
-
-.PHONY: clean
+$(PROGS): $(PROGS_OBJS)
+	wlink system $(SYSTEM) file dialog.obj file libbl3mod.lib
 
 clean:
-	rm -f *.obj *.lib
+	rm -f $(OBJS) $(LIBRARIES) $(PROGS)

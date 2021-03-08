@@ -2,22 +2,25 @@ CC = cl
 LD = link
 CFLAGS = /c
 OBJS = header.obj tablehotfix.obj regularhotfix.obj meshhotfix.obj
+PROGS_OBJS = dialog.obj
+PROGS = dialog.exe
 LIBRARIES = libbl3mod.lib
 PREFIX = /usr/local
 
-all: $(LIBRARIES)
+all: $(LIBRARIES) $(PROGS)
 
-.SUFFIXES: .c .h .o
+.SUFFIXES: .c .h .obj
 
-.c.o:
-	@echo " CC  " $<
-	@$(CC) $(CFLAGS) $<
+.c.obj:
+	$(CC) $(CFLAGS) $<
 
 $(LIBRARIES): $(CPROTOS) $(OBJS)
-	@echo " AR   libbl3mod"
-	@lib /out:libbl3mod.lib $(OBJS)
+	lib /out:libbl3mod.lib $(OBJS)
+
+$(PROGS): $(PROGS_OBJS) $(LIBRARIES)
+	$(LD) /out:dialog.exe dialog.obj libbl3mod.lib
 
 .PHONY: clean
 
 clean:
-	rm -f *.obj *.lib
+	rm -f $(PROGS) $(LIBRARIES) $(OBJS) $(PROGS_OBJS)
