@@ -19,4 +19,4 @@ $(PROGS): $(PROGS_OBJS)
 	wlink system $(SYSTEM) file dialog.obj file libbl3mod.lib
 
 clean:
-	rm -f $(OBJS) $(LIBRARIES) $(PROGS)
+	del $(OBJS) $(LIBRARIES) $(PROGS)

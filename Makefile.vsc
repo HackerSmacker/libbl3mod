@@ -23,4 +23,4 @@ $(PROGS): $(PROGS_OBJS) $(LIBRARIES)
 .PHONY: clean
 
 clean:
-	rm -f $(PROGS) $(LIBRARIES) $(OBJS) $(PROGS_OBJS)
+	del $(PROGS) $(LIBRARIES) $(OBJS) $(PROGS_OBJS)
