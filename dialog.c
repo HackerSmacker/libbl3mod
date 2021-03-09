@@ -125,17 +125,15 @@ int main(int argc, char** argv) {
 			attribute = getVal();
 			printf("What row name are you modifying? ");
 			row = getVal();
-			printf("What attribute are you modifying? ");
-			attribute = getVal();
 			printf("What is the initial (from) value? ");
 			from_val = getVal();
 			printf("What is the new (to) value? ");
 			to_val = getVal();
 			output = table_hotfix("SparkPatchEntry", 
 				level_object,
-				row, attribute, from_val, to_val,
+				attribute, row, from_val, to_val,
 				0);
-
+			// TODO: swap row and attribute because I think they're backwards
 			fwrite(output, sizeof(char), strlen(output), outFile);
 		}
 		else if(strcmp(choice, "3") == 0) {
