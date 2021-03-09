@@ -13,15 +13,15 @@
  */
 
 
-char* mesh_hotfix(const char* hf_type, char* pakFile, char* package,  
-		char* attr_name, char* object, char* to_val, int visible,
+char* mesh_hotfix(const char* hf_type, char* pakFile, char* object,  
+		char* attr_name, char* piece, char* to_val, int visible,
 		int notificationFlag) {
 	char* output;
 	char* notFlagChars;
 	char* visibleChars;
 	char* toValLenChars;
 	int size;
-	size = (strlen(hf_type) + strlen(package)
+	size = (strlen(hf_type) + strlen(piece)
 			+ strlen(attr_name) + strlen(pakFile)
 			+ strlen(to_val) + strlen(object) + 32);
 	output = malloc(size);
@@ -35,11 +35,11 @@ char* mesh_hotfix(const char* hf_type, char* pakFile, char* package,
 	strcat(output, ",");
 	strcat(output, pakFile);
 	strcat(output, "),");
-	strcat(output, package);
+	strcat(output, object);
 	strcat(output, ",");
 	strcat(output, attr_name);
 	strcat(output, ",");
-	strcat(output, object);
+	strcat(output, piece);
 	strcat(output, ",\"");
 	strcat(output, to_val);
 	strcat(output, "\",");

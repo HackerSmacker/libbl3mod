@@ -3,20 +3,20 @@
 #include <stdio.h>
 #include "bl3mod.h"
 
-char* table_hotfix(const char* hf_type, char* package,  
+char* table_hotfix(const char* hf_type, char* object,  
 		char* row_name, char* attr_name, 
 		char* from_val, char* to_val, int notificationFlag) {
 	char* output;
 	char* notFlagChars;
 	char* fromValLenChars;
 	char* toValLenChars;
-	char* packageEndWithSlash;
-	char* packageEnd;
+	char* objectEndWithSlash;
+	char* objectEnd;
 	int size;
-	packageEndWithSlash = strrchr(package, '/');
-	packageEnd = malloc(strlen(packageEndWithSlash) - 1);
-	strcpy(packageEnd, packageEndWithSlash + 1);
-	size = (strlen(hf_type) + strlen(package)
+	objectEndWithSlash = strrchr(object, '/');
+	objectEnd = malloc(strlen(objectEndWithSlash) - 1);
+	strcpy(objectEnd, objectEndWithSlash + 1);
+	size = (strlen(hf_type) + strlen(object)
 			+ strlen(row_name) + strlen(attr_name)
 			+ strlen(from_val) + strlen(to_val) + 32);
 	output = malloc(size);
@@ -28,9 +28,9 @@ char* table_hotfix(const char* hf_type, char* package,
 	sprintf(notFlagChars, "%d", notificationFlag);
 	strcat(output, notFlagChars);
 	strcat(output, ",),");
-	strcat(output, package);
+	strcat(output, object);
 	strcat(output, ".");
-	strcat(output, packageEnd);
+	strcat(output, objectEnd);
 	strcat(output, ",");
 	strcat(output, row_name);
 	strcat(output, ",");

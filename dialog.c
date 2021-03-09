@@ -51,9 +51,25 @@ int main(int argc, char** argv) {
 	char* from_val;
 	char* to_val;
 	char* attribute;
+	char* row;
 	int loopContinue = 1;
 	printf("BL3 Hotfix Mod \"GUI\"\n");
 	printf("(c) 2021 HackerSmacker\n");
+	#ifdef CMS
+	printf("Warning: you are running on VM/CMS.\n");
+	printf("Input might not work properly if you defined\n");
+	printf("your terminal to be a 3215.\n");
+	#endif
+	#ifdef VMS
+	printf("Warning: you are running on VMS or OpenVMS.\n");
+	printf("Please note that some functions might crash.\n");
+	#endif
+	#ifdef OS2
+	printf("Warning: you are running on OS/2. If this was\n");
+	printf("compiled with IBM C Set/2 or VisualAge C++, there is\n");
+	printf("a good chance that the object search functions can\n");
+	printf("crash your machine.\n");
+	#endif
 	printf("Output file? ");
 	outputFile = getVal();
 	printf("Will use %s.\n", outputFile);
@@ -97,6 +113,29 @@ int main(int argc, char** argv) {
 			to_val = getVal();
 			output = regular_hotfix("SparkPatchEntry", level_package,
 				level_object, attribute, from_val, to_val, 0);
+			fwrite(output, sizeof(char), strlen(output), outFile);
+		}
+		else if(strcmp(choice, "2") == 0) {
+			printf("Table hotfix.\n");
+			printf("What package are you modifying? ");
+			level_package = getVal();
+			printf("What object are you modifying? ");
+			level_object = getVal();
+			printf("What attribute are you modifying? ");
+			attribute = getVal();
+			printf("What row name are you modifying? ");
+			row = getVal();
+			printf("What attribute are you modifying? ");
+			attribute = getVal();
+			printf("What is the initial (from) value? ");
+			from_val = getVal();
+			printf("What is the new (to) value? ");
+			to_val = getVal();
+			output = table_hotfix("SparkPatchEntry", 
+				level_object,
+				row, attribute, from_val, to_val,
+				0);
+
 			fwrite(output, sizeof(char), strlen(output), outFile);
 		}
 		else if(strcmp(choice, "3") == 0) {

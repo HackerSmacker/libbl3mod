@@ -3,7 +3,7 @@
 #include <stdio.h>
 #include "bl3mod.h"
 
-char* regular_hotfix(const char* hf_type, char* pakFile, char* package,  
+char* regular_hotfix(const char* hf_type, char* pakFile, char* object,  
 		char* attr_name, char* from_val, char* to_val, 
 		int notificationFlag) {
 	char* output;
@@ -11,7 +11,7 @@ char* regular_hotfix(const char* hf_type, char* pakFile, char* package,
 	char* fromValLenChars;
 	char* toValLenChars;
 	int size;
-	size = (strlen(hf_type) + strlen(package)
+	size = (strlen(hf_type) + strlen(object)
 			+ strlen(attr_name) + strlen(pakFile)
 			+ strlen(from_val) + strlen(to_val) + 32);
 	output = malloc(size);
@@ -25,7 +25,7 @@ char* regular_hotfix(const char* hf_type, char* pakFile, char* package,
 	strcat(output, ",");
 	strcat(output, pakFile);
 	strcat(output, "),");
-	strcat(output, package);
+	strcat(output, object);
 	strcat(output, ",");
 	strcat(output, attr_name);
 	strcat(output, ",");
