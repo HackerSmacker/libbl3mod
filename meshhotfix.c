@@ -3,27 +3,23 @@
 #include <stdio.h>
 #include "bl3mod.h"
 
-/*
- * 1. Package
- * 2. Object name (i.e. map name)
- * 3. Level object
- * 4. Length of the next field
- * 5. "x,y,z|p,y,w|sx,sy,sz" (location, rotation, scale)
- * 6. Visibility
- */
+// LIBBL3MOD SYSTEM CODE: LICENSED UNDER THE TERMS OF THE GPLV3 LICENSE.
 
-
-char* mesh_hotfix(const char* hf_type, char* pakFile, char* object,  
-		char* attr_name, char* piece, char* to_val, int visible,
+char* mesh_hotfix(const char* hf_type, char* pakFile, char* map,  
+		char* objClass, char* obj, char* to_val, int visible,
 		int notificationFlag) {
 	char* output;
 	char* notFlagChars;
 	char* visibleChars;
 	char* toValLenChars;
 	int size;
-	size = (strlen(hf_type) + strlen(piece)
-			+ strlen(attr_name) + strlen(pakFile)
-			+ strlen(to_val) + strlen(object) + 32);
+	size = (strlen(hf_type)
+			+ strlen(objClass)
+			+ strlen(pakFile)
+			+ strlen(to_val)
+			+ strlen(map)
+			+ strlen(obj)
+			+ 32);
 	output = malloc(size);
 	memset(output, 0x00, size);
 	strcat(output, hf_type);
@@ -35,11 +31,16 @@ char* mesh_hotfix(const char* hf_type, char* pakFile, char* object,
 	strcat(output, ",");
 	strcat(output, pakFile);
 	strcat(output, "),");
-	strcat(output, object);
+	strcat(output, map);
 	strcat(output, ",");
-	strcat(output, attr_name);
+	strcat(output, objClass);
 	strcat(output, ",");
-	strcat(output, piece);
+	strcat(output, obj);
+	strcat(output, ",");
+	toValLenChars = malloc(8);
+	memset(toValLenChars, 0x00, 8);
+	sprintf(toValLenChars, "%d", strlen(to_val));
+	strcat(output, toValLenChars);
 	strcat(output, ",\"");
 	strcat(output, to_val);
 	strcat(output, "\",");

@@ -1,20 +1,17 @@
 CC = gcc
 LD = gcc
 CFLAGS = -I. -O0
-OBJS = header.o tablehotfix.o regularhotfix.o meshhotfix.o
-PROGS_OBJS = dialog.o
-PROGS = dialog
+OBJS = header.o tablehotfix.o regularhotfix.o meshhotfix.o utilunique.o utilgame.o
 LIBRARIES = libbl3mod.a
 PREFIX = /usr/local
 
-all: $(LIBRARIES) $(PROGS)
+all: $(LIBRARIES)
 
 %.o: %.c
 	$(CC) $(CFLAGS) -c -o $@ $<
 
-$(PROGS): $(LIBRARIES) $(PROGS_OBJS)
-	$(CC) -c dialog.c
-	$(LD) -o dialog dialog.c -L. -lbl3mod
+progs: $(LIBRARIES)
+	make -C EXAMPLES
 
 $(LIBRARIES): $(OBJS)
 	ar cr libbl3mod.a $(OBJS)
@@ -22,4 +19,5 @@ $(LIBRARIES): $(OBJS)
 .PHONY: clean
 
 clean:
-	rm -f $(OBJS) $(PROGS_OBJS) $(LIBRARIES) $(PROGS)
+	make -C EXAMPLES clean
+	rm -f $(OBJS) $(LIBRARIES)

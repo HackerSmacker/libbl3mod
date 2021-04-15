@@ -1,8 +1,7 @@
-$! ON ERROR $ CONTINUE
-$ CC HEADER.C
-$ CC REGULARHOTFIX.C
-$ CC TABLEHOTFIX.C
-$ CC MESHHOTFIX.C
-$ LIBRARY/CREATE LIBBL3MOD HEADER.OBJ,REGULARHOTFIX.OBJ,TABLEHOTFIX.OBJ
-$ CC DIALOG.c
-$ LINK DIALOG,LIBBL3MOD.OLB/LIB
+$ cc header.c
+$ cc meshhotfix.c
+$ cc regularhotfix.c
+$ cc tablehotfix.c
+$ cc utilgame.c
+$ cc utilunique.c
+$ lib/create libbl3mod.lib header,meshhotfix,regularhotfix,tablehotfix,utilgame,utilunique

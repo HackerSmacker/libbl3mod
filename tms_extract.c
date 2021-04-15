@@ -5,6 +5,11 @@
 #include <zlib.h>
 #include "bl3tms.h"
 
+/* Borderlands 3 OakTMS extractor and decompressor */
+/* For "warmfix modding" (yes, I made that up) */
+/* Requires zlib. */
+/* Does not work on: any system that doesn't have zlib. */
+
 FILE* inFile;
 FILE* outFile;
 
@@ -14,8 +19,8 @@ struct tms_file tmsFile;
 struct chunk_info* chunkInfo;
 struct chunk_data* chunkData;
 
-uint32_t flip(uint32_t num) {
-    uint32_t swapped;
+unsigned int flip(unsigned int num) {
+    unsigned int swapped;
     swapped = ((num >> 24) & 0xff) |
         ((num << 8) & 0xff0000) |
         ((num >> 8) & 0xff00) |
@@ -26,14 +31,14 @@ uint32_t flip(uint32_t num) {
 int main(int argc, char** argv) {
     char outFileName[64];
     char ofnNumber[5];
-    uint64_t current_comp_size = 0;
-    uint64_t current_decomp_size = 0;
+    unsigned long long current_comp_size = 0;
+    unsigned long long current_decomp_size = 0;
     int filePos = 0;
     stream.zalloc = Z_NULL;
     stream.zfree = Z_NULL;
     stream.opaque = Z_NULL;
 
-    uint32_t temp;
+    unsigned int temp;
     if(argc < 2) {
 		printf("Incorrect number of arguments (specify an input file)\n");
 		exit(1);
@@ -45,12 +50,12 @@ int main(int argc, char** argv) {
     }
     // 0. Read header
     printf("Reading file...\n");
-    fread(&tmsFile.decomp_size, sizeof(uint32_t), 1, inFile);
-    fread(&tmsFile.num_files, sizeof(uint32_t), 1, inFile);
-    fread(&tmsFile.magic, sizeof(uint64_t), 1, inFile);
-    fread(&tmsFile.max_decomp_size, sizeof(uint64_t), 1, inFile);
-    fread(&tmsFile.total_comp_size, sizeof(uint64_t), 1, inFile);
-    fread(&tmsFile.decomp_size_2, sizeof(uint64_t), 1, inFile);
+    fread(&tmsFile.decomp_size, sizeof(unsigned int), 1, inFile);
+    fread(&tmsFile.num_files, sizeof(unsigned int), 1, inFile);
+    fread(&tmsFile.magic, sizeof(unsigned long long), 1, inFile);
+    fread(&tmsFile.max_decomp_size, sizeof(unsigned long long), 1, inFile);
+    fread(&tmsFile.total_comp_size, sizeof(unsigned long long), 1, inFile);
+    fread(&tmsFile.decomp_size_2, sizeof(unsigned long long), 1, inFile);
     printf("File information:\n");
     printf("Total decompressed size: %lu\n", tmsFile.decomp_size);
     printf("Number of files in archive: %lu\n", tmsFile.num_files);
@@ -65,8 +70,8 @@ int main(int argc, char** argv) {
     }
     // 1. Read chunk info block
     for(;;) {
-        fread(&chunkInfo[filePos].comp_size, sizeof(uint64_t), 1, inFile);
-        fread(&chunkInfo[filePos].decomp_size, sizeof(uint64_t), 1, inFile);
+        fread(&chunkInfo[filePos].comp_size, sizeof(unsigned long long), 1, inFile);
+        fread(&chunkInfo[filePos].decomp_size, sizeof(unsigned long long), 1, inFile);
         current_comp_size += chunkInfo[filePos].comp_size;
         current_decomp_size += chunkInfo[filePos].decomp_size;
         filePos++;

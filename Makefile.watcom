@@ -1,22 +1,19 @@
-SYSTEM = os2v2
+SYSTEM = nt
 CC = wcc386
 LD = wlib
 CFLAGS = -bt=$(SYSTEM) -bc
-OBJS = header.obj tablehotfix.obj regularhotfix.obj meshhotfix.obj
+OBJS = header.obj tablehotfix.obj regularhotfix.obj meshhotfix.obj utilunique.obj utilgame.obj
 PROGS_OBJS = dialog.obj
 PROGS = dialog.exe
 LIBRARIES = libbl3mod.lib
 
-all: $(LIBRARIES) $(PROGS)
+all: $(LIBRARIES)
 
 .c.obj:
 	$(CC) $(CFLAGS) $<
 
 $(LIBRARIES): $(OBJS)
-	wlib libbl3mod.lib +header.obj +tablehotfix.obj +regularhotfix.obj +meshhotfix.obj
-
-$(PROGS): $(PROGS_OBJS)
-	wlink system $(SYSTEM) file dialog.obj file libbl3mod.lib
+	wlib libbl3mod.lib +header.obj +tablehotfix.obj +regularhotfix.obj +meshhotfix.obj +utilgame.obj +utilunique.obj
 
 clean:
-	del $(OBJS) $(LIBRARIES) $(PROGS)
+	del $(OBJS) $(LIBRARIES)

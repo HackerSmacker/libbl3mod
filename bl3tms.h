@@ -1,32 +1,34 @@
 #ifndef BL3TMS_H
 #define BL3TMS_H 1
 
-#include <stdint.h>
+/* (not required) #include <stdint.h> */
+/* HS 4/11/21 Removed dependency on C89 stuff. */
 
 struct chunk_info {
-	uint64_t comp_size;
-	uint64_t decomp_size;
+	unsigned long comp_size;
+	unsigned long decomp_size;
 };
 
 struct chunk_data {
-	uint64_t chunk_length;
+	unsigned long chunk_length;
 	char* data;
 	char* decomp_data;
 };
 
 struct tms_file {
-	uint32_t decomp_size;
-	uint32_t num_files;
-	uint64_t magic;
-	uint64_t max_decomp_size;
-	uint64_t total_comp_size;
-	uint64_t decomp_size_2;
-	// COMMENTED OUT TO PREVENT STRUCT WEIRDNESS AND EXCESSIVE NESTING
-	// struct chunk_info* chunkinfo;
-	// struct chunk_data* chunkdata;
-	uint32_t footer_1;
-	uint32_t footer_2;
-	char* footer_text; // 53
+	unsigned int decomp_size;
+	unsigned int num_files;
+	unsigned long magic;
+	unsigned long max_decomp_size;
+	unsigned long total_comp_size;
+	unsigned long decomp_size_2;
+	/* COMMENTED OUT TO PREVENT STRUCT WEIRDNESS */
+	/* struct chunk_info* chunkinfo; */
+	/* struct chunk_data* chunkdata; */
+	unsigned int footer_1;
+	unsigned int footer_2;
+	/* This should always be 53 bytes long. */
+	char* footer_text;
 };
 
 #endif

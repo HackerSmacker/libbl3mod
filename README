@@ -3,6 +3,11 @@ libbl3mod
 C library for Borderlands 3 hotfix mods
 By HackerSmacker, licensed under the terms of the GPLv3 license
 
+---- START RIGHT HERE ----
+This is the core library for B3MT. If you're just here for BL3 mods, 
+look in the build folders and download the EXEs. If you're here to write
+BL3 mods, look below.
+
 Installation on UNIX/Linux/WSL/Cygwin/MacOS/BSD:
 After downloading the source, simply run make and make install to
 install libbl3mod. The headers will be copied to /usr/local/include/libbl3mod
@@ -34,8 +39,30 @@ The package comes with a MAKE_VMS.COM script, simply run it like so:
 @MAKE_VMS and it will compile. From there, you can use LINK and link your
 program against the OLB. MMS or DECset is not required.
 
-Installation on VM/CMS:
-TODO: write instructions for VM/370 compile
+Installation on VM/CMS (z/VM):
+Transfer the files to your mainframe using IND$FILE or FTP. It might be
+advisable to use VMA/VMAWin to pack the files into a VMARC, and just extract
+that on the frame. The z/VM C/C++ compiler should work. If that doesn't
+work, you can use GCCCMS. Since GCCCMS also runs on other OSes, you can
+"compile" the libbl3mod code (to s/370 assembly) and then just assemble that
+with ASMAHL (high level assembler) or ASSEBMLE (XF assembler). Then, use the
+LOAD and INCLUDE commands. Alternatively, you can generate a TXTLIB for the
+library, to simplify linking. You can then use LOAD (or INCLUDE) to load
+a libbl3mod program, and then use GENMOD to create a CMS load module.
+
+Installation on MVS (z/OS):
+Allocate a PDS, and put the source code into it. I have been sure to keep
+each line cut at 80, so be sure to allocate your PDS to be FB, 80, like
+500 kb, and about 30 directory entries. Use IND$FILE or FTP to store the
+source code. If you put the headers in the same PDS as the source, you'll
+still have issues resolving where the header files are. Use a command
+like this (from TSO) to compile it: 
+cc 'userid.src.libbl3mod(somefile)' (search('userid.src.libbl3mod'))
+This will put the objects in 'userid.src.libbl3mod.obj' usually.
+Really, you should just use GCCMVS or JCC. Use either of those to create
+the assembly source conversions of the source code, and use ASMA90
+(or IFOX00 if you're on MVS/370 or MVS/SP) and IEWL (or HEWL) to link 
+the object code into something useful.
 
 Installation on RSX-11:
 (NOTE 3/8/21: not supported)
@@ -43,3 +70,5 @@ Like the VMS version, there's a MAKE_RSX.COM to do the dirty work for you.
 Simply follow the same procedure to compile it as you would on VMS, and be
 sure to link it against the same OLB library. Using the Task Builder works 
 as well, but really the LINK command is way better.
+(NOTE: 4/15/21: still not supported)
+

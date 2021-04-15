@@ -16,7 +16,11 @@ char* mod_header(char* name, char* author, char* comment, char* version) {
 	len = (strlen(name) + strlen(comment) +
 		strlen(author) + strlen(version) + 50);
 	output = malloc(len);
+	#ifdef OLDCOMPILER
+	bzero(output, len);
+	#else
 	memset(output, 0x00, len);
+	#endif
 	strcat(output, "###\n");
 	strcat(output, "### Name: ");
 	strcat(output, name);
@@ -26,6 +30,7 @@ char* mod_header(char* name, char* author, char* comment, char* version) {
 	strcat(output, author);
 	strcat(output, "\n### Comment: ");
 	strcat(output, comment);
+	strcat(output, "\n###\n");
 	return output;
 }
 

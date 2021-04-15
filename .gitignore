@@ -1,0 +1,10 @@
+bl3hotfixmod/*
+bl3hotfixmod
+*.bl3hotfix
+*.py
+*.o
+*.a
+*.exe
+*.ksy
+*.lib
+*.txt

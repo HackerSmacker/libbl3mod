@@ -1,0 +1,24 @@
+CC = gcc
+LD = gcc
+CFLAGS = -I.. -O0
+OBJS =  gen_extreme_unrarity.o gen_no_guardian_cap.o gen_no_modifiers.o gen_pearls.o
+PROGS = gen_extreme_unrarity gen_no_guardian_cap gen_no_modifiers gen_pearls
+LIBRARIES = libbl3mod.a
+LIBDIR = ..
+PREFIX = /usr/local
+
+all: $(PROGS) 
+
+%.o: %.c
+	$(CC) $(CFLAGS) -c -o $@ $<
+
+$(PROGS): $(OBJS)
+	$(LD) -o gen_extreme_unrarity gen_extreme_unrarity.o -L$(LIBDIR) -lbl3mod
+	$(LD) -o gen_no_guardian_cap gen_no_guardian_cap.o -L$(LIBDIR) -lbl3mod
+	$(LD) -o gen_no_modifiers gen_no_modifiers.o -L$(LIBDIR) -lbl3mod
+	$(LD) -o gen_pearls gen_pearls.o -L$(LIBDIR) -lbl3mod
+
+.PHONY: clean
+
+clean:
+	rm -f $(OBJS) $(PROGS)

@@ -1,13 +1,11 @@
 CC = cl
 LD = link
 CFLAGS = /c
-OBJS = header.obj tablehotfix.obj regularhotfix.obj meshhotfix.obj
-PROGS_OBJS = dialog.obj
-PROGS = dialog.exe
+OBJS = header.obj tablehotfix.obj regularhotfix.obj meshhotfix.obj utilunique.obj utilgame.obj
 LIBRARIES = libbl3mod.lib
 PREFIX = /usr/local
 
-all: $(LIBRARIES) $(PROGS)
+all: $(LIBRARIES)
 
 .SUFFIXES: .c .h .obj
 
@@ -17,10 +15,7 @@ all: $(LIBRARIES) $(PROGS)
 $(LIBRARIES): $(CPROTOS) $(OBJS)
 	lib /out:libbl3mod.lib $(OBJS)
 
-$(PROGS): $(PROGS_OBJS) $(LIBRARIES)
-	$(LD) /out:dialog.exe dialog.obj libbl3mod.lib
-
 .PHONY: clean
 
 clean:
-	del $(PROGS) $(LIBRARIES) $(OBJS) $(PROGS_OBJS)
+	del $(OBJS) $(LIBRARIES)
