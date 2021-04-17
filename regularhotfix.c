@@ -3,7 +3,9 @@
 #include <stdio.h>
 #include "bl3mod.h"
 
-// LIBBL3MOD SYSTEM CODE: LICENSED UNDER THE TERMS OF THE GPLV3 LICENSE.
+/* LIBBL3MOD SYSTEM CODE: LICENSED UNDER THE TERMS OF THE GPLV3 LICENSE. */
+/* FAILURE TO COMPLY WITH THE LICENSE TERMS */
+/* SPECIFIED WILL RESULT IN CONSEQUENCES. */
 
 char* regular_hotfix_adv(const char* hf_type,
 			char* pakFile,
@@ -67,6 +69,67 @@ char* regular_hotfix(const char* hf_type,
 	sprintf(notFlagChars, "%d", notificationFlag);
 	strcat(output, notFlagChars);
 	strcat(output, ",),");
+	strcat(output, object);
+	strcat(output, ",");
+	strcat(output, attr);
+	strcat(output, ",0,,");
+	strcat(output, to_val);
+	strcat(output, "\n");
+	return output;
+}
+
+char* regular_hotfix_ma(const char* hf_type,
+				char* object,
+                char* attr,
+				char* to_val,
+                int notificationFlag) {
+	char* output;
+	char* notFlagChars;
+	int size;
+	size = (strlen(hf_type)
+			+ strlen(object)
+			+ strlen(attr) 
+			+ strlen(to_val) + 32);
+	output = malloc(size);
+	memset(output, 0x00, size);
+	strcat(output, hf_type);
+	strcat(output, ",(1,1,");
+	notFlagChars = malloc(2);
+	sprintf(notFlagChars, "%d", notificationFlag);
+	strcat(output, notFlagChars);
+	strcat(output, ",MatchAll),");
+	strcat(output, object);
+	strcat(output, ",");
+	strcat(output, attr);
+	strcat(output, ",0,,");
+	strcat(output, to_val);
+	strcat(output, "\n");
+	return output;
+}
+
+char* regular_hotfix_level(const char* hf_type,
+                char* pakFile,
+				char* object,
+                char* attr,
+				char* to_val,
+                int notificationFlag) {
+	char* output;
+	char* notFlagChars;
+	int size;
+	size = (strlen(hf_type)
+			+ strlen(object)
+			+ strlen(attr) 
+			+ strlen(to_val) + 32);
+	output = malloc(size);
+	memset(output, 0x00, size);
+	strcat(output, hf_type);
+	strcat(output, ",(1,1,");
+	notFlagChars = malloc(2);
+	sprintf(notFlagChars, "%d", notificationFlag);
+	strcat(output, notFlagChars);
+	strcat(output, ",");
+	strcat(output, pakFile);
+	strcat(output, "),");
 	strcat(output, object);
 	strcat(output, ",");
 	strcat(output, attr);
@@ -183,6 +246,29 @@ char* extract_object(char* object) {
 	strcpy(output, object);
 	strcat(output, ".");
 	strcat(output, objEnd + 1);
+	return output;
+}
+
+char* end_object(char* object) {
+	char* output;
+	char* objEnd;
+	objEnd = strrchr(object, '/');
+	output = malloc(strlen(objEnd) - 1 + strlen(object));
+	strcpy(output, objEnd + 1);
+	strcat(output, ".");
+	strcat(output, objEnd + 1);
+	return output;
+}
+
+char* end_object_c(char* object) {
+	char* output;
+	char* objEnd;
+	objEnd = strrchr(object, '/');
+	output = malloc(strlen(objEnd) - 1 + strlen(object));
+	strcpy(output, objEnd + 1);
+	strcat(output, ".");
+	strcat(output, objEnd + 1);
+	strcat(output, "_C");
 	return output;
 }
 

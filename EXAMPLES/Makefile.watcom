@@ -2,8 +2,8 @@ SYSTEM = nt
 CC = wcc386
 LD = wlib
 CFLAGS = -bt=$(SYSTEM) -bc -i=..
-OBJS = gen_extreme_unrarity.obj gen_no_guardian_cap.obj gen_no_modifiers.obj gen_pearls.obj
-PROGS = gen_extreme_unrarity.exe gen_no_guardian_cap.exe gen_no_modifiers.exe gen_pearls.exe
+OBJS = gen_extreme_unrarity.obj gen_no_guardian_cap.obj gen_no_modifiers.obj gen_pearls.obj gen_events.obj
+PROGS = gen_extreme_unrarity.exe gen_no_guardian_cap.exe gen_no_modifiers.exe gen_pearls.exe gen_events.exe
 LIBRARIES = libbl3mod.lib
 LIBDIR = ..
 
@@ -17,6 +17,7 @@ $(PROGS): $(OBJS)
 	wlink system $(SYSTEM) file gen_no_guardian_cap.obj file $(LIBDIR)\\libbl3mod.lib
 	wlink system $(SYSTEM) file gen_no_modifiers.obj file $(LIBDIR)\\libbl3mod.lib
 	wlink system $(SYSTEM) file gen_pearls.obj file $(LIBDIR)\\libbl3mod.lib
+	wlink system $(SYSTEM) file gen_events.obj file $(LIBDIR)\\libbl3mod.lib
 
 clean:
 	del $(OBJS) $(PROGS)

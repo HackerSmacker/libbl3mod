@@ -3,6 +3,10 @@
 #include <stdio.h>
 #include "bl3mod.h"
 
+/* LIBBL3MOD SYSTEM CODE: LICENSED UNDER THE TERMS OF THE GPLV3 LICENSE. */
+/* FAILURE TO COMPLY WITH THE LICENSE TERMS */
+/* SPECIFIED WILL RESULT IN CONSEQUENCES. */
+
 char* table_hotfix_adv(const char* hf_type, char* pakFile,
 		char* object, char* row_name, char* attr_name, 
 		char* from_val, char* to_val, int notificationFlag) {

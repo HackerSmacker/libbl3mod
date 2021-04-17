@@ -5,7 +5,7 @@ By HackerSmacker, licensed under the terms of the GPLv3 license
 
 ---- START RIGHT HERE ----
 This is the core library for B3MT. If you're just here for BL3 mods, 
-look in the build folders and download the EXEs. If you're here to write
+look in the "Releases" tab and download the EXEs. If you're here to write
 BL3 mods, look below.
 
 Installation on UNIX/Linux/WSL/Cygwin/MacOS/BSD:
@@ -72,3 +72,15 @@ sure to link it against the same OLB library. Using the Task Builder works
 as well, but really the LINK command is way better.
 (NOTE: 4/15/21: still not supported)
 
+Notes on some compilers:
+- OpenWatcom C/C++ (as of 3/25/21) has an unexplained bug that results in
+  weird bugs with extract_object. This issue ONLY applies to the March 2021
+  versions of OpenWatcom.
+- Visual C/C++ tends to cause unexplained issues. 
+- GCC and Clang do not have any issues at all.
+- GCCMVS, GCCCMS, and GCCVSE require you to use "dd:output" as the output
+  file name. Simply use FILEDEF OUTPUT (VM), //OUTPUT DD (MVS), or
+  // ASSGN OUTPUT, // EXTENT, and // DLBL (VSE).
+- VMS is fully supported, and features the fewest bugs of any system
+  for some unknown reason.
+- GCC on x86_64 systems is the primary compile target.

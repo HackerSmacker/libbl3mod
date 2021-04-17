@@ -3,6 +3,10 @@
 #include <string.h>
 #include "bl3tms.h"
 
+/* LIBBL3MOD SYSTEM CODE: LICENSED UNDER THE TERMS OF THE GPLV3 LICENSE. */
+/* FAILURE TO COMPLY WITH THE LICENSE TERMS */
+/* SPECIFIED WILL RESULT IN CONSEQUENCES. */
+
 /* Borderlands 3 "OakTMS-prod.cfg" extractor program */
 /* Probably the most compatible examplein the libbl3mod set */
 /* This should literally compile on ANYTHING. (ANSI C)*/

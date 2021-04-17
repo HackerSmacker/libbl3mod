@@ -5,6 +5,10 @@
 #include <zlib.h>
 #include "bl3tms.h"
 
+/* LIBBL3MOD SYSTEM CODE: LICENSED UNDER THE TERMS OF THE GPLV3 LICENSE. */
+/* FAILURE TO COMPLY WITH THE LICENSE TERMS */
+/* SPECIFIED WILL RESULT IN CONSEQUENCES. */
+
 /* Borderlands 3 OakTMS extractor and decompressor */
 /* For "warmfix modding" (yes, I made that up) */
 /* Requires zlib. */

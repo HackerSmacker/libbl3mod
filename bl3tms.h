@@ -1,6 +1,10 @@
 #ifndef BL3TMS_H
 #define BL3TMS_H 1
 
+/* LIBBL3MOD SYSTEM CODE: LICENSED UNDER THE TERMS OF THE GPLV3 LICENSE. */
+/* FAILURE TO COMPLY WITH THE LICENSE TERMS */
+/* SPECIFIED WILL RESULT IN CONSEQUENCES. */
+
 /* (not required) #include <stdint.h> */
 /* HS 4/11/21 Removed dependency on C89 stuff. */
 

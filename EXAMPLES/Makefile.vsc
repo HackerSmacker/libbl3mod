@@ -1,11 +1,11 @@
 CC = cl
 LD = link
-OBJS = gen_extreme_unrarity.obj gen_no_guardian_cap.obj gen_no_modifiers.obj gen_pearls.obj
+OBJS = gen_extreme_unrarity.obj gen_no_guardian_cap.obj gen_no_modifiers.obj gen_pearls.obj gen_events.obj
 LIBRARIES = libbl3mod.lib
 LIBDIR = ..
 CFLAGS = /c /I$(LIBDIR)
 PREFIX = /usr/local
-PROGS = gen_extreme_unrarity.exe gen_no_guardian_cap.exe gen_no_modifiers.exe gen_pearls.exe
+PROGS = gen_extreme_unrarity.exe gen_no_guardian_cap.exe gen_no_modifiers.exe gen_pearls.exe gen_events.exe
 
 all: $(PROGS)
 
@@ -19,6 +19,7 @@ $(PROGS): $(OBJS)
 	$(LD) /out:gen_no_guardian_cap.exe gen_no_guardian_cap.obj $(LIBDIR)\\libbl3mod.lib
 	$(LD) /out:gen_no_modifiers.exe gen_no_modifiers.obj $(LIBDIR)\\libbl3mod.lib
 	$(LD) /out:gen_pearls.exe gen_pearls.obj $(LIBDIR)\\libbl3mod.lib
+	$(LD) /out:gen_events.exe gen_events.obj $(LIBDIR)\\libbl3mod.lib
 
 .PHONY: clean
 

@@ -3,7 +3,9 @@
 #include <stdio.h>
 #include "bl3mod.h"
 
-// LIBBL3MOD SYSTEM CODE: LICENSED UNDER THE TERMS OF THE GPLV3 LICENSE.
+/* LIBBL3MOD SYSTEM CODE: LICENSED UNDER THE TERMS OF THE GPLV3 LICENSE. */
+/* FAILURE TO COMPLY WITH THE LICENSE TERMS */
+/* SPECIFIED WILL RESULT IN CONSEQUENCES. */
 
 char* mesh_hotfix(const char* hf_type, char* pakFile, char* map,  
 		char* objClass, char* obj, char* to_val, int visible,
