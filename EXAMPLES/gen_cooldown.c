@@ -45,7 +45,7 @@ int main() {
 	gets(toValueNumber);
 	currentLine = malloc(8192);
 	memset(currentLine, 0x00, 8192);
-	currentLine = regular_hotfix(MOD_TYPE_PATCH, selectedPath, attr, toValueNumber, 0);
+	currentLine = hotfix(MOD_TYPE_PATCH, selectedPath, attr, toValueNumber, 0);
 	fwrite(currentLine, sizeof(char), strlen(currentLine), outFile);
     }
     printf("Done.\n");

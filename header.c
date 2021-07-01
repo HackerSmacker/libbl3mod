@@ -13,15 +13,16 @@
 #include <stdlib.h>
 #include "bl3mod.h"
 
-char* mod_header(char* name, char* author, char* comment, char* version) {
-	char* output;
+char* hdr_output;
+
+char* header(char* name, char* author, char* comment, char* version) {
 	int len = (strlen(name) + strlen(comment) +
 		strlen(author) + strlen(version) + 50);
-	output = malloc(len);
+	hdr_output = malloc(len);
 	#ifdef OLDCOMPILER
-	bzero(output, len);
+	bzero(hdr_output, len);
 	#else
-	memset(output, 0x00, len);
+	memset(hdr_output, 0x00, len);
 	#endif
 	/*
 	strcpy(output, "###\n");
@@ -35,19 +36,19 @@ char* mod_header(char* name, char* author, char* comment, char* version) {
 	strcat(output, comment);
 	strcat(output, "\n");
 	*/
-	sprintf(output, "###\n### Name: %s\n### Version: %s\n### Author: %s\n### Comment: %s\n###\n",
+	sprintf(hdr_output, "###\n### Name: %s\n### Version: \
+		%s\n### Author: %s\n### Comment: %s\n###\n",
 		name, version, author, comment);
-	return output;
+	return hdr_output;
 }
 
-char* mod_header_contact(char* type, char* address) {
-	char* output;
+char* header_acontact(char* type, char* address) {
 	int len = strlen(type) + strlen(address) + 32;
-	output = malloc(len);
+	hdr_output = malloc(len);
 	#ifdef OLDCOMPILER
-	bzero(output, len);
+	bzero(hdr_output, len);
 	#else 
-	memset(output, 0x00, len);
+	memset(hdr_output, 0x00, len);
 	#endif
 	/*
 	strcpy(output, "### Contact (");
@@ -56,27 +57,25 @@ char* mod_header_contact(char* type, char* address) {
 	strcat(output, address);
 	strcat(output, "\n");
 	*/
-	sprintf(output, "### Contact (%s): %s\n", type, address);
-	return output;
+	sprintf(hdr_output, "### Contact (%s): %s\n", type, address);
+	return hdr_output;
 }
 
-char* mod_header_tags(char* tags) {
-	char* output;
+char* header_tags(char* tags) {
 	int len = strlen(tags + 32);
-	output = malloc(len);
+	hdr_output = malloc(len);
 	/*
 	strcpy(output, "### Tags: ");
 	strcat(output, tags);
 	strcat(output, "\n");
 	*/
-	sprintf(output, "### Tags: %s\n", tags);
-	return output;
+	sprintf(hdr_output, "### Tags: %s\n", tags);
+	return hdr_output;
 }
 
-char* mod_header_category(char* cats) {
-        char* output;
+char* header_category(char* cats) {
         int len = strlen(cats + 32);
-        output = malloc(len);
-        sprintf(output, "### Category: %s\n", cats);
-        return output;
+        hdr_output = malloc(len);
+        sprintf(hdr_output, "### Category: %s\n", cats);
+        return hdr_output;
 }

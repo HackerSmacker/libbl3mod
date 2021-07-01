@@ -10,7 +10,7 @@
 FILE* outFile;
 
 int main() {
-    char* header;
+    char* modheader;
     char* currentLine;
     char* currentSet;
     int i;
@@ -20,8 +20,8 @@ int main() {
         printf("Failed to open output file!\n");
         exit(1);
     }
-    header = mod_header("Difficulty", "HS", "asdf", "1.0.0");
-    fwrite(header, sizeof(char), strlen(header), outFile);
+    modheader = header("Difficulty", "HS", "asdf", "1.0.0");
+    fwrite(modheader, sizeof(char), strlen(modheader), outFile);
     printf("Done.\n");
     return 0;
 }

@@ -7,7 +7,7 @@
 /* FAILURE TO COMPLY WITH THE LICENSE TERMS */
 /* SPECIFIED WILL RESULT IN CONSEQUENCES. */
 
-char* table_hotfix_adv(const char* hf_type, char* pakFile,
+char* adv_table_hotfix(const char* hf_type, char* pakFile,
 		char* object, char* row_name, char* attr_name, 
 		char* from_val, char* to_val, int notificationFlag) {
 	char* output;
@@ -54,11 +54,11 @@ char* table_hotfix(const char* hf_type, char* object,
 	char* toValLenChars;
 	int size;
 	size = (strlen(hf_type) 
-			+ strlen(object)
-			+ strlen(row_name)
-			+ strlen(attr_name)
-			+ strlen(to_val)
-			+ 32);
+		+ strlen(object)
+		+ strlen(row_name)
+		+ strlen(attr_name)
+		+ strlen(to_val)
+		+ 32);
 	output = malloc(size);
 	memset(output, 0x00, size);
 	strcat(output, hf_type);
@@ -87,11 +87,11 @@ char* table_hotfix_matchall(const char* hf_type, char* object,
 	char* toValLenChars;
 	int size;
 	size = (strlen(hf_type) 
-			+ strlen(object)
-			+ strlen(row_name)
-			+ strlen(attr_name)
-			+ strlen(to_val)
-			+ 32);
+		+ strlen(object)
+		+ strlen(row_name)
+		+ strlen(attr_name)
+		+ strlen(to_val)
+		+ 32);
 	output = malloc(size);
 	memset(output, 0x00, size);
 	strcat(output, hf_type);

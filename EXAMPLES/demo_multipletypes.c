@@ -27,9 +27,9 @@ int main() {
 	printf("%s\n", burgerOnMap);
 	char* redChange = set_unique_flavortext("/Game/Gear/Weapons/Pistols/Jakobs/_Shared/_Design/_Unique/TheDuc/UIStat_RedText_TheDuc", "WHAT DO I DO");
 	printf("%s\n", redChange);
-	char* scale = regular_hotfix_multi("SparkPatchEntry", "/Game/GameData/Balance/HealthAndDamage/Att_UniversalBalanceScaler.Att_UniversalBalanceScaler", "BP_ConstantValueResolver_C_0", "Value", "(BaseValueConstant=1.080)", 0);
+	char* scale = hotfix_multi("SparkPatchEntry", "/Game/GameData/Balance/HealthAndDamage/Att_UniversalBalanceScaler.Att_UniversalBalanceScaler", "BP_ConstantValueResolver_C_0", "Value", "(BaseValueConstant=1.080)", 0);
 	printf("%s\n", scale);
-	char* scale2 = regular_hotfix_field_multi("SparkPatchEntry", "/Game/GameData/Balance/HealthAndDamage/Att_UniversalBalanceScaler.Att_UniversalBalanceScaler", "BP_ConstantValueResolver_C_0", "Value", "BaseValueConstant", "1.080", 0);
+	char* scale2 = hotfix_field_multi("SparkPatchEntry", "/Game/GameData/Balance/HealthAndDamage/Att_UniversalBalanceScaler.Att_UniversalBalanceScaler", "BP_ConstantValueResolver_C_0", "Value", "BaseValueConstant", "1.080", 0);
 	printf("%s\n", scale2);
 	char* tableDamage = table_hotfix_matchall("SparkEarlyLevelPatchEntry", extract_object("/Game/GameData/Balance/HealthAndDamage/HealthBalanceScalers/DataTable_DamageAndHealthScalers"), "AI_AdditionalDamagePerLevel", "Scaler_4_FE2B037B42E1F6E76E3AEBAFDCC8DB86", "-0.006", 0);
 	printf("%s\n", tableDamage);

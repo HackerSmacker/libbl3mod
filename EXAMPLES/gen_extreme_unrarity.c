@@ -60,7 +60,7 @@ char* isfieldshumanreadable[] = {
 };
 
 int main() {
-    char* header;
+    char* modheader;
     char* currentLine;
     char toValueNumber[8];
     int i;
@@ -71,8 +71,8 @@ int main() {
         printf("Failed to open output file!\n");
         exit(1);
     }
-    header = mod_header("Extreme (Un)Rarity", "HS", "Changes drop scale.", "1.0.0");
-    fwrite(header, sizeof(char), strlen(header), outFile);
+    modheader = header("Extreme (Un)Rarity", "HS", "Changes drop scale.", "1.0.0");
+    fwrite(modheader, sizeof(char), strlen(modheader), outFile);
     printf("Please specify the new values in decimal form (for instance, 50%% is 0.50 and 100%% is 1.00).\n");
     printf("These prompts will ask you to change the overall scaling values.\n");
     printf("To skip changing a value, just strike enter.\n");

@@ -60,7 +60,7 @@ char* modExtreme[] = {
 //SparkPatchEntry,(1,1,0,),/Game/PatchDLC/Mayhem2/ModifierSets/ModSet_Mayhem2_EAsy.ModSet_Mayhem2_EAsy,ModifierSets,0,,((ModifierAbility=/Game/PatchDLC/Mayhem2/Abilities/Player/PartyTime/Ability_Mayhem2_PartyTime.Ability_Mayhem2_PartyTime_C,Weight=(BaseValueConstant=0)))
 
 int main() {
-    char* header;
+    char* modheader;
     char* currentLine;
     char* currentSet;
     int i;
@@ -70,8 +70,8 @@ int main() {
         printf("Failed to open output file!\n");
         exit(1);
     }
-    header = mod_header("No Modifiers", "HS", "asdf", "1.0.0");
-    fwrite(header, sizeof(char), strlen(header), outFile);
+    modheader = header("No Modifiers", "HS", "asdf", "1.0.0");
+    fwrite(modheader, sizeof(char), strlen(modheader), outFile);
     currentSet = malloc(512 * sizeof(char));
     for(i = 0; i < 6; i++) {
         #ifdef OLDCOMPILER
@@ -79,8 +79,8 @@ int main() {
         #else
         memset(currentSet, 0x00, 512);
         #endif
-        sprintf(currentSet, "((ModifierAbility=%s,Weight=(BaseValueConstant=0)))", extract_object_c(modEasy[i]));
-        currentLine = regular_hotfix(MOD_TYPE_PATCH, extract_object(modSets[0]), "ModifierSets", currentSet, 0);
+        sprintf(currentSet, "((ModifierAbility=%s,Weight=(BaseValueConstant=0)))", c_extract_object(modEasy[i]));
+        currentLine = hotfix(MOD_TYPE_PATCH, extract_object(modSets[0]), "ModifierSets", currentSet, 0);
         fwrite(currentLine, sizeof(char), strlen(currentLine), outFile);
     }
     for(i = 0; i < 10; i++) {
@@ -89,8 +89,8 @@ int main() {
         #else
         memset(currentSet, 0x00, 512);
         #endif
-        sprintf(currentSet, "((ModifierAbility=%s,Weight=(BaseValueConstant=0)))", extract_object_c(modMedium[i]));
-        currentLine = regular_hotfix(MOD_TYPE_PATCH, extract_object(modSets[1]), "ModifierSets", currentSet, 0);
+        sprintf(currentSet, "((ModifierAbility=%s,Weight=(BaseValueConstant=0)))", c_extract_object(modMedium[i]));
+        currentLine = hotfix(MOD_TYPE_PATCH, extract_object(modSets[1]), "ModifierSets", currentSet, 0);
         fwrite(currentLine, sizeof(char), strlen(currentLine), outFile);
     }
     for(i = 0; i < 6; i++) {
@@ -99,8 +99,8 @@ int main() {
         #else
         memset(currentSet, 0x00, 512);
         #endif
-        sprintf(currentSet, "((ModifierAbility=%s,Weight=(BaseValueConstant=0)))", extract_object_c(modHard[i]));
-        currentLine = regular_hotfix(MOD_TYPE_PATCH, extract_object(modSets[2]), "ModifierSets", currentSet, 0);
+        sprintf(currentSet, "((ModifierAbility=%s,Weight=(BaseValueConstant=0)))", c_extract_object(modHard[i]));
+        currentLine = hotfix(MOD_TYPE_PATCH, extract_object(modSets[2]), "ModifierSets", currentSet, 0);
         fwrite(currentLine, sizeof(char), strlen(currentLine), outFile);
     }
     for(i = 0; i < 6; i++) {
@@ -109,8 +109,8 @@ int main() {
         #else
         memset(currentSet, 0x00, 512);
         #endif
-        sprintf(currentSet, "((ModifierAbility=%s,Weight=(BaseValueConstant=0)))", extract_object_c(modExtreme[i]));
-        currentLine = regular_hotfix(MOD_TYPE_PATCH, extract_object(modSets[3]), "ModifierSets", currentSet, 0);
+        sprintf(currentSet, "((ModifierAbility=%s,Weight=(BaseValueConstant=0)))", c_extract_object(modExtreme[i]));
+        currentLine = hotfix(MOD_TYPE_PATCH, extract_object(modSets[3]), "ModifierSets", currentSet, 0);
         fwrite(currentLine, sizeof(char), strlen(currentLine), outFile);
     }
     printf("Done.\n");

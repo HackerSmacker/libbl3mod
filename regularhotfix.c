@@ -7,21 +7,21 @@
 /* FAILURE TO COMPLY WITH THE LICENSE TERMS */
 /* SPECIFIED WILL RESULT IN CONSEQUENCES. */
 
-char* regular_hotfix_adv(const char* hf_type,
-			char* pakFile,
-			char* object,
-			char* attr,
-			char* from_val,
-			char* to_val,
-			int notificationFlag) {
+char* adv_hotfix(const char* hf_type,
+		char* pakFile,
+		char* object,
+		char* attr,
+		char* from_val,
+		char* to_val,
+		int notificationFlag) {
 	char* output;
 	char* notFlagChars;
 	char* fromValLenChars;
 	char* toValLenChars;
 	int size;
 	size = (strlen(hf_type) + strlen(object)
-			+ strlen(attr) + strlen(pakFile)
-			+ strlen(from_val) + strlen(to_val) + 32);
+		+ strlen(attr) + strlen(pakFile)
+		+ strlen(from_val) + strlen(to_val) + 32);
 	output = malloc(size);
 	memset(output, 0x00, size);
 	strcat(output, hf_type);
@@ -49,18 +49,18 @@ char* regular_hotfix_adv(const char* hf_type,
 	return output;
 }
 
-char* regular_hotfix(const char* hf_type,
-				char* object,
+char* hotfix(const char* hf_type,
+		char* object,
                 char* attr,
-				char* to_val,
+		char* to_val,
                 int notificationFlag) {
 	char* output;
 	char* notFlagChars;
 	int size;
 	size = (strlen(hf_type)
-			+ strlen(object)
-			+ strlen(attr) 
-			+ strlen(to_val) + 32);
+		+ strlen(object)
+		+ strlen(attr) 
+		+ strlen(to_val) + 32);
 	output = malloc(size);
 	memset(output, 0x00, size);
 	strcat(output, hf_type);
@@ -78,18 +78,18 @@ char* regular_hotfix(const char* hf_type,
 	return output;
 }
 
-char* regular_hotfix_ma(const char* hf_type,
-				char* object,
+char* hotfix_ma(const char* hf_type,
+		char* object,
                 char* attr,
-				char* to_val,
+		char* to_val,
                 int notificationFlag) {
 	char* output;
 	char* notFlagChars;
 	int size;
 	size = (strlen(hf_type)
-			+ strlen(object)
-			+ strlen(attr) 
-			+ strlen(to_val) + 32);
+		+ strlen(object)
+		+ strlen(attr) 
+		+ strlen(to_val) + 32);
 	output = malloc(size);
 	memset(output, 0x00, size);
 	strcat(output, hf_type);
@@ -107,19 +107,19 @@ char* regular_hotfix_ma(const char* hf_type,
 	return output;
 }
 
-char* regular_hotfix_level(const char* hf_type,
+char* hotfix_level(const char* hf_type,
                 char* pakFile,
-				char* object,
+		char* object,
                 char* attr,
-				char* to_val,
+		char* to_val,
                 int notificationFlag) {
 	char* output;
 	char* notFlagChars;
 	int size;
 	size = (strlen(hf_type)
-			+ strlen(object)
-			+ strlen(attr) 
-			+ strlen(to_val) + 32);
+		+ strlen(object)
+		+ strlen(attr) 
+		+ strlen(to_val) + 32);
 	output = malloc(size);
 	memset(output, 0x00, size);
 	strcat(output, hf_type);
@@ -139,19 +139,19 @@ char* regular_hotfix_level(const char* hf_type,
 	return output;
 }
 
-char* regular_hotfix_multi(const char* hf_type,
-				char* object, 
+char* hotfix_multi(const char* hf_type,
+		char* object, 
                 char* which,
-				char* attr,
-				char* to_val,
+		char* attr,
+		char* to_val,
                 int notificationFlag) {
 	char* output;
 	char* notFlagChars;
 	int size;
 	size = (strlen(hf_type)
-			+ strlen(object)
-			+ strlen(attr) 
-			+ strlen(to_val) + 32);
+		+ strlen(object)
+		+ strlen(attr) 
+		+ strlen(to_val) + 32);
 	output = malloc(size);
 	memset(output, 0x00, size);
 	strcat(output, hf_type);
@@ -171,19 +171,19 @@ char* regular_hotfix_multi(const char* hf_type,
 	return output;
 }
 
-char* regular_hotfix_field(const char* hf_type,
-				char* object,
+char* hotfix_field(const char* hf_type,
+		char* object,
                 char* attr,
-				char* field,
-				char* to_val,
+		char* field,
+		char* to_val,
                 int notificationFlag) {
 	char* output;
 	char* notFlagChars;
 	int size;
 	size = (strlen(hf_type)
-			+ strlen(object)
-			+ strlen(attr) 
-			+ strlen(to_val) + 32);
+		+ strlen(object)
+		+ strlen(attr) 
+		+ strlen(to_val) + 32);
 	output = malloc(size);
 	memset(output, 0x00, size);
 	strcat(output, hf_type);
@@ -203,20 +203,20 @@ char* regular_hotfix_field(const char* hf_type,
 	return output;
 }
 
-char* regular_hotfix_field_multi(const char* hf_type,
-				char* object, 
+char* hotfix_multi_field(const char* hf_type,
+		char* object, 
                 char* which,
-				char* attr,
-				char* field,
-				char* to_val,
+		char* attr,
+		char* field,
+		char* to_val,
                 int notificationFlag) {
 	char* output;
 	char* notFlagChars;
 	int size;
 	size = (strlen(hf_type)
-			+ strlen(object)
-			+ strlen(attr) 
-			+ strlen(to_val) + 32);
+		+ strlen(object)
+		+ strlen(attr) 
+		+ strlen(to_val) + 32);
 	output = malloc(size);
 	memset(output, 0x00, size);
 	strcat(output, hf_type);
@@ -260,7 +260,7 @@ char* end_object(char* object) {
 	return output;
 }
 
-char* end_object_c(char* object) {
+char* c_end_object(char* object) {
 	char* output;
 	char* objEnd;
 	objEnd = strrchr(object, '/');
@@ -272,7 +272,7 @@ char* end_object_c(char* object) {
 	return output;
 }
 
-char* extract_object_c(char* object) {
+char* c_extract_object(char* object) {
 	char* output;
 	char* objEnd;
 	objEnd = strrchr(object, '/');

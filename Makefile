@@ -1,5 +1,5 @@
-CC = gcc
-LD = gcc
+CC = x86_64-w64-mingw32-gcc
+LD = x86_64-w64-mingw32-gcc
 CFLAGS = -I. -O0
 OBJS = header.o tablehotfix.o regularhotfix.o meshhotfix.o utilunique.o utilgame.o
 LIBRARIES = libbl3mod.a

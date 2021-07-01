@@ -22,7 +22,7 @@ char* economyPriceScaler = "GbxAttributeData\'\"/Game/GameData/Economy/Rarity/At
 FILE* outFile;
 
 int main() {
-    char* header;
+    char* modheader;
     char* currentLine;
     int i;
     printf("(B3MT module/libbl3mod test program) Remap Common to be Pearlescent. \n");
@@ -31,41 +31,41 @@ int main() {
         printf("Failed to open output file!\n");
         exit(1);
     }
-    header = mod_header("Pearlescents", "HS", "GAMER", "1.0.0");
-    fwrite(header, sizeof(char), strlen(header), outFile);
+    modheader = header("Pearlescents", "HS", "GAMER", "1.0.0");
+    fwrite(modheader, sizeof(char), strlen(modheader), outFile);
     
     // Change rarity color and outline color.
-    currentLine = regular_hotfix(MOD_TYPE_PATCH, rarityDataObject, "RarityColorFX", "(r=0.020,g=0.978,b=0.882,a=1)", 0);
+    currentLine = hotfix(MOD_TYPE_PATCH, rarityDataObject, "RarityColorFX", "(r=0.020,g=0.978,b=0.882,a=1)", 0);
     fwrite(currentLine, sizeof(char), strlen(currentLine), outFile);
-    currentLine = regular_hotfix(MOD_TYPE_PATCH, rarityDataObject, "RarityColorOutline", "(r=0.020,g=0.978,b=0.882,a=1)", 0);
+    currentLine = hotfix(MOD_TYPE_PATCH, rarityDataObject, "RarityColorOutline", "(r=0.020,g=0.978,b=0.882,a=1)", 0);
     fwrite(currentLine, sizeof(char), strlen(currentLine), outFile);
 
     // Rarity frame name?
-    currentLine = regular_hotfix(MOD_TYPE_PATCH, rarityDataObject, "RarityFrameName", "Mission", 0);
+    currentLine = hotfix(MOD_TYPE_PATCH, rarityDataObject, "RarityFrameName", "Mission", 0);
     fwrite(currentLine, sizeof(char), strlen(currentLine), outFile);
 
     // Display name
-    currentLine = regular_hotfix(MOD_TYPE_PATCH, rarityDataObject, "RarityDisplayname", "PEARLESCENT", 0);
+    currentLine = hotfix(MOD_TYPE_PATCH, rarityDataObject, "RarityDisplayname", "PEARLESCENT", 0);
     fwrite(currentLine, sizeof(char), strlen(currentLine), outFile);
 
     // Drop sound effect
-    currentLine = regular_hotfix(MOD_TYPE_PATCH, rarityDataObject, "RarityLootAudioStinger", levelUpSoundEffect, 0);
+    currentLine = hotfix(MOD_TYPE_PATCH, rarityDataObject, "RarityLootAudioStinger", levelUpSoundEffect, 0);
     fwrite(currentLine, sizeof(char), strlen(currentLine), outFile);
 
     // Drop icon
-    currentLine = regular_hotfix(MOD_TYPE_PATCH, rarityDataObject, "ZoneMapPOIType", mapIcon, 0);
+    currentLine = hotfix(MOD_TYPE_PATCH, rarityDataObject, "ZoneMapPOIType", mapIcon, 0);
     fwrite(currentLine, sizeof(char), strlen(currentLine), outFile);
     
     // Retain the drop icon for oranges
-    currentLine = regular_hotfix(MOD_TYPE_PATCH, yellowRarityDataObject, "ZoneMapPOIType", mapIcon, 0);
+    currentLine = hotfix(MOD_TYPE_PATCH, yellowRarityDataObject, "ZoneMapPOIType", mapIcon, 0);
     fwrite(currentLine, sizeof(char), strlen(currentLine), outFile);
 
     // Score modifier
-    currentLine = regular_hotfix(MOD_TYPE_PATCH, rarityDataObject, "ItemScoreRarityModifier.BaseValueConstant", "1.3", 0);
+    currentLine = hotfix(MOD_TYPE_PATCH, rarityDataObject, "ItemScoreRarityModifier.BaseValueConstant", "1.3", 0);
     fwrite(currentLine, sizeof(char), strlen(currentLine), outFile);
 
     // Price modifier
-    currentLine = regular_hotfix(MOD_TYPE_PATCH, rarityDataObject, "MonetaryValueModifier.BaseValueAttribute", economyPriceScaler, 0);
+    currentLine = hotfix(MOD_TYPE_PATCH, rarityDataObject, "MonetaryValueModifier.BaseValueAttribute", economyPriceScaler, 0);
     fwrite(currentLine, sizeof(char), strlen(currentLine), outFile);
 
     // Stats

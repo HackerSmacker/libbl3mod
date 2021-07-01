@@ -8,7 +8,7 @@
 /* SPECIFIED WILL RESULT IN CONSEQUENCES. */
 
 char* set_unique_name(char* object, char* to_val) {
-	char* output = regular_hotfix("SparkPatchEntry", 
+	char* output = hotfix("SparkPatchEntry", 
 		extract_object(object), "PartName", to_val, 0);
 	return output;
 }
@@ -20,7 +20,7 @@ char* set_unique_flavortext(char* object, char* to_val) {
 	strcpy(newText, "[Flavor]");
 	strcat(newText, to_val);
 	strcat(newText, "[/Flavor]");
-	output = regular_hotfix("SparkPatchEntry", 
+	output = hotfix("SparkPatchEntry", 
 		extract_object(object), "Text", newText, 0);
 	return output;
 }

@@ -1,6 +1,5 @@
 #include <stdio.h>
 #include "bl3mod.h"
-#include "bl3modtype.h"
 
 int main() {
        printf("libbl3mod demo 4 - coordinate generator\n");

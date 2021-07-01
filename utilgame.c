@@ -8,10 +8,10 @@
 /* SPECIFIED WILL RESULT IN CONSEQUENCES. */
 
 char* global_value_scale(char* newScale) {
-	/* Yes, I know you can just "return regular_hotfix()"" */
+	/* Yes, I know you can just "return hotfix()"" */
 	/* I chose not to for several reasons... */
 	char* output;
-	output = regular_hotfix_field_multi("SparkPatchEntry", 
+	output = hotfix_multi_field("SparkPatchEntry", 
 		extract_object("/Game/GameData/Balance/HealthAndDamage/Att_UniversalBalanceScaler"),
 		"BP_ConstantValueResolver_C_0", "Value", "BaseValueConstant", newScale, 0);
 	return output;

@@ -25,17 +25,17 @@ struct array_entry {
 
 /* Common library functions */
 
-char* mod_header(char* name,
+char* header(char* name,
     char* author,
     char* comment,
     char* version);
 
-char* mod_header_contact(char* type,
+char* header_acontact(char* type,
     char* address);
 
-char* mod_header_tags(char* tags);
+char* header_tags(char* tags);
 
-char* mod_header_category(char* cats);
+char* header_category(char* cats);
 
 /* Standard table hotfix (all params specified).    */
 /* hf_type: Hotfix type, like SparkPathEntry        */
@@ -45,7 +45,7 @@ char* mod_header_category(char* cats);
 /* from_val: From value.                            */
 /* to_val: To value.                                */
 
-char* table_hotfix_adv(const char* hf_type, char* pakFile, char* object,
+char* adv_table_hotfix(const char* hf_type, char* pakFile, char* object,
                 char* row_name, char* attr_name,
                 char* from_val, char* to_val, int notificationFlag);
 
@@ -81,7 +81,7 @@ char* table_hotfix_matchall(const char* hf_type, char* object,
 /* attr: attribute you are editing                      */
 /* to_val: replacement for attr's content               */
 
-char* regular_hotfix(const char* hf_type, char* object,
+char* hotfix(const char* hf_type, char* object,
                 char* attr, char* to_val,
                 int notificationFlag);
 
@@ -92,7 +92,7 @@ char* regular_hotfix(const char* hf_type, char* object,
 /* attr: attribute you are editing                          */ 
 /* to_val: replacement for attr's content                   */
 
-char* regular_hotfix_ma(const char* hf_type, char* object,
+char* hotfix_ma(const char* hf_type, char* object,
                 char* attr, char* to_val,
                 int notificationFlag);
 
@@ -104,7 +104,7 @@ char* regular_hotfix_ma(const char* hf_type, char* object,
 /* to_val: replacement for attr's content                           */
 /* Note: this is really only used for SparkEarlyLevelPatchEntry     */
 
-char* regular_hotfix_level(const char* hf_type, 
+char* hotfix_level(const char* hf_type, 
                 char* pakFile, char* object,
                 char* attr, char* to_val,
                 int notificationFlag);
@@ -115,7 +115,7 @@ char* regular_hotfix_level(const char* hf_type,
 /* attr: attribute you are editing                                      */
 /* count: (VERY IMPORTANT) the number of "struct array_entry" objects   */
 
-char* regular_hotfix_va(const char* hf_type, char* object,
+char* hotfix_va(const char* hf_type, char* object,
                 char* attr, int notificationFlag, 
                 int count, ...);
 
@@ -126,7 +126,7 @@ char* regular_hotfix_va(const char* hf_type, char* object,
 /* attr: attribute you are editing                                      */
 /* to_val: replacement for attr's content                               */
 
-char* regular_hotfix_multi(const char* hf_type, char* object, 
+char* hotfix_multi(const char* hf_type, char* object, 
                 char* which, char* attr, char* to_val,
                 int notificationFlag);
 
@@ -136,7 +136,7 @@ char* regular_hotfix_multi(const char* hf_type, char* object,
 /* attr: attribute you are editing                          */
 /* to_val: replacement for attr's content                   */
 
-char* regular_hotfix_field(const char* hf_type, char* object,
+char* hotfix_field(const char* hf_type, char* object,
                 char* attr, char* field, char* to_val,
                 int notificationFlag);
 
@@ -148,7 +148,7 @@ char* regular_hotfix_field(const char* hf_type, char* object,
 /* attr: attribute you are editing                                          */
 /* to_val: replacement for attr's content                                   */
 
-char* regular_hotfix_field_multi(const char* hf_type, char* object, 
+char* hotfix_multi_field(const char* hf_type, char* object, 
                 char* which, char* attr, char* field, char* to_val,
                 int notificationFlag);
 
@@ -160,7 +160,7 @@ char* regular_hotfix_field_multi(const char* hf_type, char* object,
 /* from_val: original value for attr                            */
 /* to_val: replacement for attr's content                       */
 
-char* regular_hotfix_adv(const char* hf_type, char* pakFile, char* object,
+char* adv_hotfix(const char* hf_type, char* pakFile, char* object,
                 char* attr, char* from_val, char* to_val,
                 int notificationFlag);
 
@@ -193,7 +193,7 @@ char* extract_object(char* object);
 /* Convert /Path/To/Some/Object to /Path/To/Some/Object.Object_C  */  
 /* object: path to object                                         */
 
-char* extract_object_c(char* object);
+char* c_extract_object(char* object);
 
 /* Pull out the "end" of an object path.                */
 /* /Game/Object/SomeObject -> SomeObject.SomeObject     */
@@ -206,7 +206,7 @@ char* end_object(char* object);
 /* /Game/Object/SomeObject -> SomeObject.SomeObject_C   */
 /* object: path to object                               */
 
-char* end_object_c(char* object);
+char* c_end_object(char* object);
 
 
 /* Subject-specific library functions */

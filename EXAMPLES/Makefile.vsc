@@ -5,7 +5,7 @@ LIBRARIES = libbl3mod.lib
 LIBDIR = ..
 CFLAGS = /c /I$(LIBDIR)
 PREFIX = /usr/local
-PROGS = gen_extreme_unrarity.exe gen_no_guardian_cap.exe gen_no_modifiers.exe gen_pearls.exe gen_events.exe gen_cooldown.exe gen_thirdperson.obj
+PROGS = gen_extreme_unrarity.exe gen_no_guardian_cap.exe gen_no_modifiers.exe gen_pearls.exe gen_events.exe gen_cooldown.exe gen_thirdperson.exe
 
 all: $(PROGS)
 

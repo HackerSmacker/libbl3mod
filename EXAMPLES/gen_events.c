@@ -46,7 +46,7 @@ char* bugfix_hearts2021[2] = {
 
 
 int main() {
-    char* header;
+    char* modheader;
     char* currentLine;
     char playerChoice[8];
     int i;
@@ -57,8 +57,8 @@ int main() {
         printf("Failed to open output file!\n");
         exit(1);
     }
-    header = mod_header("Timed events", "HackerSmacker", "Start timed events whenever.", "1.0");
-    fwrite(header, sizeof(char), strlen(header), outFile);
+    modheader = header("Timed events", "HackerSmacker", "Start timed events whenever.", "1.0");
+    fwrite(modheader, sizeof(char), strlen(modheader), outFile);
     printf("What event do you want? You can really only have 1 at a time...\n");
     printf("1 - Bloody Harvest 2019\n");
     printf("2 - Bloody Harvest 2020\n");
@@ -68,13 +68,13 @@ int main() {
     gets(playerChoice);
     if(strcmp(playerChoice, "5") == 0) {
         /* Enable the "league" */
-        currentLine = regular_hotfix(MOD_TYPE_PATCH, extract_object(gameplayGlobals), "LeagueInstance", "1", 0);
+        currentLine = hotfix(MOD_TYPE_PATCH, extract_object(gameplayGlobals), "LeagueInstance", "1", 0);
         fwrite(currentLine, sizeof(char), strlen(currentLine), outFile);
-        currentLine = regular_hotfix(MOD_TYPE_PATCH, extract_object(gameplayGlobals), "ActiveLeague", "OL_TheCartels", 0);
+        currentLine = hotfix(MOD_TYPE_PATCH, extract_object(gameplayGlobals), "ActiveLeague", "OL_TheCartels", 0);
         fwrite(currentLine, sizeof(char), strlen(currentLine), outFile);
-        currentLine = regular_hotfix(MOD_TYPE_PATCH, extract_object(spawnControl), "DLCs", toVal_Cartels, 0);
+        currentLine = hotfix(MOD_TYPE_PATCH, extract_object(spawnControl), "DLCs", toVal_Cartels, 0);
         fwrite(currentLine, sizeof(char), strlen(currentLine), outFile);
-        currentLine = regular_hotfix_level(MOD_TYPE_EARLYLEVEL, "Sanctuary3_P", missionPoint, "SpawnOptions", toVal_Mission_Cartels, 0);
+        currentLine = hotfix_level(MOD_TYPE_EARLYLEVEL, "Sanctuary3_P", missionPoint, "SpawnOptions", toVal_Mission_Cartels, 0);
         fwrite(currentLine, sizeof(char), strlen(currentLine), outFile);
         /* Main menu */
         currentLine = table_hotfix(MOD_TYPE_PATCH, extract_object(mainMenu), "MainMenuAltBackground", "Value", "(BaseValueConstant=5)", 0);
@@ -85,13 +85,13 @@ int main() {
     }
     else if(strcmp(playerChoice, "3") == 0) {
         /* Enable the "league" */
-        currentLine = regular_hotfix(MOD_TYPE_PATCH, extract_object(gameplayGlobals), "LeagueInstance", "1", 0);
+        currentLine = hotfix(MOD_TYPE_PATCH, extract_object(gameplayGlobals), "LeagueInstance", "1", 0);
         fwrite(currentLine, sizeof(char), strlen(currentLine), outFile);
-        currentLine = regular_hotfix(MOD_TYPE_PATCH, extract_object(gameplayGlobals), "ActiveLeague", "OL_ValentinesDay", 0);
+        currentLine = hotfix(MOD_TYPE_PATCH, extract_object(gameplayGlobals), "ActiveLeague", "OL_ValentinesDay", 0);
         fwrite(currentLine, sizeof(char), strlen(currentLine), outFile);
-        currentLine = regular_hotfix(MOD_TYPE_PATCH, extract_object(spawnControl), "DLCs", toVal_Hearts2020, 0);
+        currentLine = hotfix(MOD_TYPE_PATCH, extract_object(spawnControl), "DLCs", toVal_Hearts2020, 0);
         fwrite(currentLine, sizeof(char), strlen(currentLine), outFile);
-        currentLine = regular_hotfix_level(MOD_TYPE_EARLYLEVEL, "Sanctuary3_P", missionPoint, "SpawnOptions", toVal_Mission_Hearts2020, 0);
+        currentLine = hotfix_level(MOD_TYPE_EARLYLEVEL, "Sanctuary3_P", missionPoint, "SpawnOptions", toVal_Mission_Hearts2020, 0);
         fwrite(currentLine, sizeof(char), strlen(currentLine), outFile);
         /* Bugfixes */
         for(i = 0; i < 9; i++) {
@@ -101,13 +101,13 @@ int main() {
     }
     else if(strcmp(playerChoice, "4") == 0) {
         /* Enable the "league" */
-        currentLine = regular_hotfix(MOD_TYPE_PATCH, extract_object(gameplayGlobals), "LeagueInstance", "2", 0);
+        currentLine = hotfix(MOD_TYPE_PATCH, extract_object(gameplayGlobals), "LeagueInstance", "2", 0);
         fwrite(currentLine, sizeof(char), strlen(currentLine), outFile);
-        currentLine = regular_hotfix(MOD_TYPE_PATCH, extract_object(gameplayGlobals), "ActiveLeague", "OL_ValentinesDay", 0);
+        currentLine = hotfix(MOD_TYPE_PATCH, extract_object(gameplayGlobals), "ActiveLeague", "OL_ValentinesDay", 0);
         fwrite(currentLine, sizeof(char), strlen(currentLine), outFile);
-        currentLine = regular_hotfix(MOD_TYPE_PATCH, extract_object(spawnControl), "DLCs", toVal_Hearts2020, 0);
+        currentLine = hotfix(MOD_TYPE_PATCH, extract_object(spawnControl), "DLCs", toVal_Hearts2020, 0);
         fwrite(currentLine, sizeof(char), strlen(currentLine), outFile);
-        currentLine = regular_hotfix_level(MOD_TYPE_EARLYLEVEL, "Sanctuary3_P", missionPoint, "SpawnOptions", toVal_Mission_Hearts2020, 0);
+        currentLine = hotfix_level(MOD_TYPE_EARLYLEVEL, "Sanctuary3_P", missionPoint, "SpawnOptions", toVal_Mission_Hearts2020, 0);
         fwrite(currentLine, sizeof(char), strlen(currentLine), outFile);
         /* Bugfixes */
         for(i = 0; i < 2; i++) {

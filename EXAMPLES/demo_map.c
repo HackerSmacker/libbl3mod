@@ -1,11 +1,10 @@
 #include <stdio.h>
 #include "bl3mod.h"
-#include "bl3modtype.h"
 
 int main() {
        printf("libbl3mod demo 2 - regular hotfix\n");
        char* result = mesh_hotfix(
-		       mod_type_level,
+		       MOD_TYPE_LEVEL,
 		       "AtlasHQ_P",
 		       "/Game/Maps/Zone_1/AtlasHQ",
 		       "/Game/LevelArt/Environments/Promethea/AtlasHQ/Architecture/Pillars/Model/Meshes",

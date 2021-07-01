@@ -1,5 +1,5 @@
-CC = gcc
-LD = gcc
+CC = x86_64-w64-mingw32-gcc
+LD = x86_64-w64-mingw32-gcc
 CFLAGS = -I.. -O0
 OBJS =  gen_extreme_unrarity.o gen_no_guardian_cap.o gen_no_modifiers.o gen_pearls.o gen_events.o gen_cooldown.o gen_thirdperson.o
 PROGS = gen_extreme_unrarity gen_no_guardian_cap gen_no_modifiers gen_pearls gen_events gen_cooldown gen_thirdperson
