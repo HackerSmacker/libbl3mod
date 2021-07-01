@@ -35,6 +35,8 @@ char* mod_header_contact(char* type,
 
 char* mod_header_tags(char* tags);
 
+char* mod_header_category(char* cats);
+
 /* Standard table hotfix (all params specified).    */
 /* hf_type: Hotfix type, like SparkPathEntry        */
 /* object: Path to UE4 object in question           */

@@ -7,6 +7,11 @@
 /* FAILURE TO COMPLY WITH THE LICENSE TERMS */
 /* SPECIFIED WILL RESULT IN CONSEQUENCES. */
 
+/* To use this, simply tack on a letter at the end. */
+/* Note: there's no punctuation, so you'll have bad grammar */
+char* yellow_text_path = "/Game/LevelArt/Environments/_Global/Letters/Meshes/SM_Letter_";
+
+
 char* mesh_hotfix(const char* hf_type, char* pakFile, char* map,  
 		char* objClass, char* obj, char* to_val, int visible,
 		int notificationFlag) {

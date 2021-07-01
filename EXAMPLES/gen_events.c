@@ -57,7 +57,7 @@ int main() {
         printf("Failed to open output file!\n");
         exit(1);
     }
-    header = mod_header("Timed events", "", "", "");
+    header = mod_header("Timed events", "HackerSmacker", "Start timed events whenever.", "1.0");
     fwrite(header, sizeof(char), strlen(header), outFile);
     printf("What event do you want? You can really only have 1 at a time...\n");
     printf("1 - Bloody Harvest 2019\n");
